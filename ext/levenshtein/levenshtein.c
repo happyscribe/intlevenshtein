@@ -10,15 +10,18 @@
 
 # define min(x, y) ((x) < (y) ? (x) : (y))
 
-unsigned int levenshtein (const char *word1, const char *word2) {
-    size_t len1 = strlen(word1),
-           len2 = strlen(word2);
+unsigned int levenshtein(
+    const unsigned int *words1, 
+    unsigned int len1, 
+    const unsigned int *words2, 
+    unsigned int len2
+) {
     unsigned int *v = calloc(len2 + 1, sizeof(unsigned int));
     unsigned int i, j, current, next, cost;
 
     /* strip common prefixes */
-    while (len1 > 0 && len2 > 0 && eq(word1[0], word2[0]))
-        word1++, word2++, len1--, len2--;
+    while (len1 > 0 && len2 > 0 && eq(words1[0], words2[0]))
+        words1++, words2++, len1--, len2--;
 
     /* handle degenerate cases */
     if (!len1) return len2;
@@ -37,8 +40,8 @@ unsigned int levenshtein (const char *word1, const char *word2) {
              * cost of replacement is 0 if the two chars are the same, or have
              * been transposed with the chars immediately before. otherwise 1.
              */
-            cost = !(eq(word1[i], word2[j]) || (i && j &&
-                     eq(word1[i-1], word2[j]) && eq(word1[i],word2[j-1])));
+            cost = !(eq(words1[i], words2[j]) || (i && j &&
+                     eq(words1[i-1], words2[j]) && eq(words1[i],words2[j-1])));
             /* find the least cost of insertion, deletion, or replacement */
             next = min(min( v[j+1] + 1,
                             current + 1 ),
@@ -58,11 +61,24 @@ unsigned int levenshtein (const char *word1, const char *word2) {
 # ifdef TEST
 # include <stdio.h>
 # include "levenshtein.h"
+# include <time.h>
 
 int main (int argc, char **argv) {
-    unsigned int distance;
-    if (argc < 3) return -1;
-    distance = levenshtein(argv[1], argv[2]);
-    printf("%s vs %s: %u\n", argv[1], argv[2],distance);
+    unsigned int size = 10000;
+    unsigned int* words1 = malloc(sizeof(unsigned int)*size);
+    unsigned int* words2 = malloc(sizeof(unsigned int)*size);
+
+    srand(time(NULL)); 
+
+    for (unsigned int i = 0; i < size; ++i) {
+        words1[i] = rand()%20;
+        words2[i] = rand()%20;
+    }
+
+    unsigned int distance = levenshtein(words1, size, words2, size);
+    printf("%u", distance);
+
+    free(words1);
+    free(words2);
 }
 # endif
