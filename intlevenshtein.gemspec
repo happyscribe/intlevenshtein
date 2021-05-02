@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib".freeze]
   s.authors = ["Albert Segarra".freeze]
   s.date = "2021-05-02"
-  s.description = "Provides a fast, cross-Ruby implementation of the levenshtein distance algorithm for arrays of integers".freeze
+  s.description = "Provides a fast, cross-Ruby implementation of the levenshtein distance algorithm for arrays of integers.".freeze
   s.extensions = ["ext/levenshtein/extconf.rb".freeze]
   s.extra_rdoc_files = [
     "CHANGELOG.markdown",
@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
     "ext/levenshtein/extconf.rb",
     "ext/levenshtein/levenshtein.c",
     "ext/levenshtein/levenshtein.h",
+    "intlevenshtein.gemspec",
     "lib/levenshtein-ffi.rb",
     "lib/levenshtein.rb",
     "spec/levenshtein_spec.rb",
@@ -45,27 +46,21 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<levenshtein-distance>.freeze, [">= 0"])
+      s.add_runtime_dependency(%q<intlevenshtein>.freeze, [">= 0"])
       s.add_development_dependency(%q<rspec>.freeze, ["~> 2.99"])
       s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.0"])
       s.add_runtime_dependency(%q<ffi>.freeze, ["~> 1.9"])
-      s.add_development_dependency(%q<rspec>.freeze, ["~> 2.99"])
-      s.add_development_dependency(%q<jeweler>.freeze, ["~> 2.0"])
     else
-      s.add_dependency(%q<levenshtein-distance>.freeze, [">= 0"])
+      s.add_dependency(%q<intlevenshtein>.freeze, [">= 0"])
       s.add_dependency(%q<rspec>.freeze, ["~> 2.99"])
       s.add_dependency(%q<jeweler>.freeze, ["~> 2.0"])
       s.add_dependency(%q<ffi>.freeze, ["~> 1.9"])
-      s.add_dependency(%q<rspec>.freeze, ["~> 2.99"])
-      s.add_dependency(%q<jeweler>.freeze, ["~> 2.0"])
     end
   else
-    s.add_dependency(%q<levenshtein-distance>.freeze, [">= 0"])
+    s.add_dependency(%q<intlevenshtein>.freeze, [">= 0"])
     s.add_dependency(%q<rspec>.freeze, ["~> 2.99"])
     s.add_dependency(%q<jeweler>.freeze, ["~> 2.0"])
     s.add_dependency(%q<ffi>.freeze, ["~> 1.9"])
-    s.add_dependency(%q<rspec>.freeze, ["~> 2.99"])
-    s.add_dependency(%q<jeweler>.freeze, ["~> 2.0"])
   end
 end
 
