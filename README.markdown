@@ -3,7 +3,8 @@ levenshtein-ffi
 
 [![Build Status](https://travis-ci.org/dbalatero/levenshtein-ffi.svg?branch=master)](https://travis-ci.org/dbalatero/levenshtein-ffi)
 
-Converted to FFI by David Balatero for Ruby portability.
+- Converted to FFI by David Balatero for Ruby portability.
+- Changed the interface from strings to arrays of integers by Albert Segarra to support word-level distance calculation. 
 
 This gem originally based on levenshtein.
 
@@ -14,14 +15,10 @@ Tested on:
 * MRI 2.0.0
 * Rubinius (1.9 mode)
 
-Known Issues
-============
-* The C extension uses `char*` strings, and so Unicode strings will give incorrect distances.
-
 Including in Gemfile
 ====================
 
-    gem 'levenshtein-ffi', :require => 'levenshtein'
+    gem 'intlevenshtein', :require => 'levenshtein'
 
 Original README
 ===============
@@ -31,7 +28,7 @@ computation in O(n) memory and O(n^2) time, using a C wrapper. The module has a
 single function:
 
     require 'levenshtein'
-    Levenshtein.distance("string1", "string2") == 1 # returns true
+    Levenshtein.distance([1, 2], [1, 3]) == 1 # returns true
 
 This function can be used as a drop-in replacement for
 Text::Levenshtein.levenshtein, which is pure Ruby and rather slow. That's it!
