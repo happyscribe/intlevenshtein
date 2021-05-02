@@ -9,20 +9,29 @@ module Levenshtein
     candidates = ['.bundle', '.so', '.dylib', ''].map { |ext| library + ext }
     ffi_lib(candidates)
 
-    # Safe version of distance, checks that arguments are really strings.
-    def distance(str1, str2)
-      validate(str1)
-      validate(str2)
-      ffi_distance(str1, str2)
+    # Safe version of distance, checks that arguments are really arrays of strings.
+    def distance(words1, words2)
+      validate(words1)
+      validate(words2)
+
+      pointer1 = FFI::MemoryPointer.new(:uint32, words1.length)
+      # Fill the memory location with your data
+      pointer1.put_array_of_uint32(0, words1)
+
+      pointer2 = FFI::MemoryPointer.new(:uint32, words2.length)
+      # Fill the memory location with your data
+      pointer2.put_array_of_uint32(0, words2)
+      
+      ffi_distance(pointer1, words1.length, pointer2, words2.length)
     end
 
     # Unsafe version. Results in a segmentation fault if passed nils!
-    attach_function :ffi_distance, :levenshtein, [:string, :string], :int
+    attach_function :ffi_distance, :levenshtein, [:pointer, :int, :pointer, :int], :int
 
     private
     def validate(arg)
-      unless arg.kind_of?(String)
-        raise TypeError, "wrong argument type #{arg.class} (expected String)"
+      unless arg.kind_of?(Array)
+        raise TypeError, "wrong argument type #{arg.class} (expected Array)"
       end
     end
   end
