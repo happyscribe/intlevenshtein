@@ -1,4 +1,4 @@
-levenshtein-ffi
+intlevenshtein
 ===============
 
 [![Build Status](https://travis-ci.org/dbalatero/levenshtein-ffi.svg?branch=master)](https://travis-ci.org/dbalatero/levenshtein-ffi)
