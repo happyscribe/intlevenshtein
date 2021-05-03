@@ -1,10 +1,10 @@
-levenshtein-ffi
+intlevenshtein
 ===============
 
 [![Build Status](https://travis-ci.org/dbalatero/levenshtein-ffi.svg?branch=master)](https://travis-ci.org/dbalatero/levenshtein-ffi)
 
 - Converted to FFI by David Balatero for Ruby portability.
-- Changed the interface from strings to arrays of integers by Albert Segarra to support word-level distance calculation. 
+- Changed `Levenshtein.distance` to accept arrays of integers instead of strings for word-level distance support (by Albert Segarra).
 
 This gem originally based on levenshtein.
 
