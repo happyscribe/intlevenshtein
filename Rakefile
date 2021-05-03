@@ -1,7 +1,7 @@
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "intlevenshtein"
+    gemspec.name = "levenshteint"
     gemspec.summary = "A levenshtein distance calculator for arrays of integers"
     gemspec.description = "Provides a fast, cross-Ruby implementation of the levenshtein distance algorithm for arrays of integers."
     gemspec.authors = ["Albert Segarra"]

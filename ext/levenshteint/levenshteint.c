@@ -10,7 +10,7 @@
 
 # define min(x, y) ((x) < (y) ? (x) : (y))
 
-unsigned int levenshtein(
+unsigned int levenshteint(
     const unsigned int *words1, 
     unsigned int len1, 
     const unsigned int *words2, 
@@ -60,7 +60,7 @@ unsigned int levenshtein(
 
 # ifdef TEST
 # include <stdio.h>
-# include "levenshtein.h"
+# include "levenshteint.h"
 # include <time.h>
 
 int main (int argc, char **argv) {
@@ -75,7 +75,7 @@ int main (int argc, char **argv) {
         words2[i] = rand()%20;
     }
 
-    unsigned int distance = levenshtein(words1, size, words2, size);
+    unsigned int distance = levenshteint(words1, size, words2, size);
     printf("%u", distance);
 
     free(words1);

@@ -1,11 +1,11 @@
 require 'ffi'
 
-module Levenshtein
+module Levenshteint
   class << self
     extend FFI::Library
 
     # Try loading in order.
-    library = File.dirname(__FILE__) + "/../ext/levenshtein/levenshtein"
+    library = File.dirname(__FILE__) + "/../ext/levenshteint/levenshteint"
     candidates = ['.bundle', '.so', '.dylib', ''].map { |ext| library + ext }
     ffi_lib(candidates)
 
@@ -26,7 +26,7 @@ module Levenshtein
     end
 
     # Unsafe version. Results in a segmentation fault if passed nils!
-    attach_function :ffi_distance, :levenshtein, [:pointer, :int, :pointer, :int], :int
+    attach_function :ffi_distance, :levenshteint, [:pointer, :int, :pointer, :int], :int
 
     private
     def validate(arg)
