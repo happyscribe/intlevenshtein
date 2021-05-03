@@ -1,14 +1,8 @@
 # include <string.h>
 # include <stdlib.h>
 
-# ifdef LEV_CASE_INSENSITIVE
-# include <ctype.h>
-# define eq(x, y) (tolower(x) == tolower(y))
-# else
-# define eq(x, y) ((x) == (y))
-# endif
-
 # define min(x, y) ((x) < (y) ? (x) : (y))
+# define eq(x, y) ((x) == (y))
 
 unsigned int levenshteint(
     const unsigned int *words1, 
