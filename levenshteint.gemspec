@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
     "README.markdown",
     "Rakefile",
     "VERSION",
-    "intlevenshtein.gemspec",
+    "levenshteint.gemspec",
     "spec/spec_helper.rb"
   ]
   s.rubygems_version = "3.0.3".freeze
