@@ -6,7 +6,7 @@ module Levenshteint
 
     library = "levenshtein.#{RbConfig::MAKEFILE_CONFIG['DLEXT']}"
     candidates = ["#{__FILE__}/..", "#{__FILE__}/../../ext/levenshtein"]
-    candidates.unshift(Gem.loaded_specs['levenshtein-ffi'].extension_dir) if Gem.loaded_specs['levenshtein-ffi']
+    candidates.unshift(Gem.loaded_specs['levenshteint'].extension_dir) if Gem.loaded_specs['levenshtein-ffi']
     ffi_lib(candidates.map { |dir| File.expand_path(library, dir) })
   
     # Safe version of distance, checks that arguments are really arrays of strings.
