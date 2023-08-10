@@ -4,7 +4,7 @@ module Levenshteint
   class << self
     extend FFI::Library
 
-    library = "levenshtein.#{RbConfig::MAKEFILE_CONFIG['DLEXT']}"
+    library = "levenshteint.#{RbConfig::MAKEFILE_CONFIG['DLEXT']}"
     candidates = ["#{__FILE__}/..", "#{__FILE__}/../../ext/levenshteint"]
     candidates.unshift(Gem.loaded_specs['levenshteint'].extension_dir) if Gem.loaded_specs['levenshteint']
     ffi_lib(candidates.map { |dir| File.expand_path(library, dir) })
